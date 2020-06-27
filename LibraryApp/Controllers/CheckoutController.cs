@@ -78,5 +78,32 @@ namespace LibraryApp.Controllers
 
             return View(plans);
         }
+
+        public IActionResult SubscribeToPlan(string id)
+        {
+            var gateway = _braintreeService.GetGateway();
+
+            var subscriptionRequest = new SubscriptionRequest()
+            {
+                // My notes: This a hard coded payment method token (credit card token) of
+                // a sandbox test customer manually created Braintree's
+                // dashboard: Vault > Customers > +New Customer.
+                // In real world you might want to create a new customer (if not existing yet)
+                // on the fly from a checkout flow and use the generated payment-method-token.
+                PaymentMethodToken = "my-payment-method-token-value-xyz",
+                PlanId = id,
+            };
+
+            Result<Subscription> result = gateway.Subscription.Create(subscriptionRequest);
+
+            if (result.IsSuccess())
+            {
+                return View("Subscribed");
+            }
+            else
+            {
+                return View("NotSubscribed");
+            }
+        }
     }
 }
