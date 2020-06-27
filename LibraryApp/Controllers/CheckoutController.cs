@@ -70,5 +70,13 @@ namespace LibraryApp.Controllers
                 return View("Failure");
             }
         }
+
+        public IActionResult BraintreePlans()
+        {
+            var gateway = _braintreeService.GetGateway();
+            var plans = gateway.Plan.All();
+
+            return View(plans);
+        }
     }
 }
