@@ -45,8 +45,6 @@
                     if (err) {
                         return;
                     }
-                    console.log("Payload.Nonce = ", payload.nonce);
-                    alert(payload.nonce);
                     document.querySelector('#nonce').value = payload.nonce;
                     form.submit();
                 });
