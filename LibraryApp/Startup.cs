@@ -28,6 +28,7 @@ namespace LibraryApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IBraintreeService, BraintreeService>();
             services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase(new Guid().ToString()));
             services.AddControllersWithViews();
         }
