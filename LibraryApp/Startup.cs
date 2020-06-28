@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 
 namespace LibraryApp
 {
@@ -20,6 +21,7 @@ namespace LibraryApp
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
         }
 
         public IConfiguration Configuration { get; }
