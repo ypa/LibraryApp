@@ -18,7 +18,16 @@
                 <img style="width: 90%" class="card-img-bottom" src="@Model.Thumbnail" alt="Card image cap">
             </div>
             <hr />
-            <button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>
+            @*@<button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>*@
+            <script src="https://checkout.stripe.com/checkout.js"
+                    class="stripe-button"
+                    data-key="pk_test_9aVBvaKQc7JCKNyChVmzFG8y00POyDBjXl"
+                    data-name="LibraryApp Payment"
+                    data-description="@Model.Author - @Model.Title"
+                    data-locale="en"
+                    data-label="Confirm Payment - $@ViewBag.PurchaseAmount"
+                    >
+            </script>
         </form>
     </div>
 </div>
