@@ -59,5 +59,13 @@ namespace LibraryApp.Controllers
             }
 
         }
+
+        public IActionResult LoadAllPlans()
+        {
+            var service = new PlanService();
+            var allPlans = service.List().ToList();
+
+            return View(allPlans);
+        }
     }
 }
