@@ -10,31 +10,21 @@ namespace LibraryApp.Controllers
 {
     public class CheckoutController : Controller
     {
-        private readonly IBookService _courseService;
+        private readonly IBookService _bookService;
 
-        public CheckoutController(IBookService courseService)
+        public CheckoutController(IBookService bookService)
         {
-            _courseService = courseService;
+            _bookService = bookService;
         }
 
         public IActionResult Purchase(Guid id)
         {
 
-            var book = _courseService.GetById(id);
+            var book = _bookService.GetById(id);
+            ViewBag.PurchaseAmount = book.Price;
             if (book == null) return NotFound();
 
-            var data = new BookPurchaseVM
-            {
-                Id = book.Id,
-                Description = book.Description,
-                Author = book.Author,
-                Thumbnail = book.Thumbnail,
-                Title = book.Title,
-                Price = book.Price,
-                Nonce = ""
-            };
-
-            return View(data);
+            return View(book);
         }
     }
 }
