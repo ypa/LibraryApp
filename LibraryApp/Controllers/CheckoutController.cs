@@ -67,5 +67,37 @@ namespace LibraryApp.Controllers
 
             return View(allPlans);
         }
+
+        public IActionResult SubscribeToPlan(string id)
+        {
+            var subscriptionOptions = new SubscriptionCreateOptions
+            {
+                // My notes: this is a hard-coded Stripe Customer ID from
+                // which customer manually created in Stripe dashboard.
+                // In real world, the customer will be created on the fly
+                // from the checkout flow and use the returning Stripe Customer ID.
+                Customer = "cus_HYFVKstgVPIJhs",
+                Items = new List<SubscriptionItemOptions>
+                {
+                    new SubscriptionItemOptions
+                    {
+                        Plan = id
+                    }
+                }
+            };
+
+            var service = new SubscriptionService();
+
+            Subscription subscription = service.Create(subscriptionOptions);
+
+            if (subscription.Created != null)
+            {
+                return View("Subscribed");
+            }
+            else
+            {
+                return View("NotSubscribed");
+            }
+        }
     }
 }
