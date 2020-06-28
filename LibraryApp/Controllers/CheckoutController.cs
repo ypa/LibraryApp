@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LibraryApp.Data.Services;
 using LibraryApp.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace LibraryApp.Controllers
 {
@@ -25,6 +26,38 @@ namespace LibraryApp.Controllers
             if (book == null) return NotFound();
 
             return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Create(string stripeToken, Guid id)
+        {
+            var book = _bookService.GetById(id);
+
+            var chargeOptions = new ChargeCreateOptions()
+            {
+                Amount = (long)(Convert.ToDouble(book.Price) * 100),
+                Currency = "usd",
+                Source = stripeToken,
+                Metadata = new Dictionary<string, string>()
+                {
+                    { "BookId", book.Id.ToString() },
+                    { "BookTitle", book.Title },
+                    { "BookAuthor", book.Author }
+                }
+            };
+
+            var service = new ChargeService();
+            Charge charge = service.Create(chargeOptions);
+
+            if (charge.Status == "succeeded")
+            {
+                return View("Success");
+            }
+            else
+            {
+                return View("Failure");
+            }
+
         }
     }
 }
