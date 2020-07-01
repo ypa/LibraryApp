@@ -29,6 +29,10 @@ namespace LibraryApp.Controllers
             var customerResult = customerService.List().ToList();
 
             response.Customers = customerResult;
+
+            var chargeService = new ChargeService();
+            var chargeResult = chargeService.List().ToList();
+            response.Charges = chargeResult;
             
             return View(response);
         }

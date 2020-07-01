@@ -60,3 +60,30 @@
         }
     </tbody>
 </table>
+
+<hr />
+
+<h2>Stripe Charges</h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Amount</th>
+            <th scope="col">Receipt Number</th>
+            <th scope="col">Created</th>
+            <th scope="col">Currency</th>
+            <th scope="col">Customer ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var charge in Model.Charges)
+        {
+        <tr>
+            <td>$@string.Format("{0:#.00}", Convert.ToDecimal(@charge.Amount) / 100)</td>
+            <td>@charge.ReceiptNumber</td>
+            <td>@charge.Created</td>
+            <td>@charge.Currency</td>
+            <td>@charge.Customer</td>
+        </tr>
+        }
+    </tbody>
+</table>

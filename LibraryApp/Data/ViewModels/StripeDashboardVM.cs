@@ -13,5 +13,7 @@ namespace LibraryApp.Data.ViewModels
         public List<BalanceTransaction> Transactions { get; set; }
 
         public List<Customer> Customers { get; set; }
+
+        public List<Charge> Charges { get; set; }
     }
 }
