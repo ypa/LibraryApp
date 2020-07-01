@@ -23,6 +23,12 @@ namespace LibraryApp.Controllers
             var transactionResult = transactionService.List().ToList();
 
             response.Transactions = transactionResult;
+
+
+            var customerService = new CustomerService();
+            var customerResult = customerService.List().ToList();
+
+            response.Customers = customerResult;
             
             return View(response);
         }

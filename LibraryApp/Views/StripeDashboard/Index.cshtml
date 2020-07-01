@@ -38,3 +38,25 @@
     </tbody>
 </table>
 
+<hr />
+
+<h2>Stripe Customers</h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in Model.Customers)
+        {
+        <tr>
+            <th scope="row">@customer.Name</th>
+            <td>$@string.Format("{0:#.00}", Convert.ToDecimal(@customer.Balance) / 100)</td>
+            <td>@customer.Created</td>
+        </tr>
+        }
+    </tbody>
+</table>
