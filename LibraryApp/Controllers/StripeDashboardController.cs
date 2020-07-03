@@ -24,7 +24,6 @@ namespace LibraryApp.Controllers
 
             response.Transactions = transactionResult;
 
-
             var customerService = new CustomerService();
             var customerResult = customerService.List().ToList();
 
@@ -41,6 +40,10 @@ namespace LibraryApp.Controllers
             var refundService = new RefundService();
             var refundResult = refundService.List().ToList();
             response.Refunds = refundResult;
+
+            var productService = new ProductService();
+            var productResult = productService.List().ToList();
+            response.Products = productResult;
 
             return View(response);
         }

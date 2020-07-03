@@ -88,6 +88,7 @@
     </tbody>
 </table>
 
+<hr />
 
 <h2>Stripe Disputes</h2>
 <table class="table">
@@ -116,6 +117,7 @@
     </tbody>
 </table>
 
+<hr />
 
 <h2>Stripe Refunds</h2>
 <table class="table">
@@ -141,6 +143,31 @@
             <td>@refund.Currency</td>
             <td>@refund.ChargeId</td>
             <td>@refund.Status</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<h2>Stripe Products</h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Unit Label</th>
+            <th scope="col">Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in Model.Products)
+        {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Description</td>
+            <td>@product.UnitLabel</td>
+            <td>@product.Created</td>
         </tr>
         }
     </tbody>

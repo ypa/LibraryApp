@@ -19,5 +19,7 @@ namespace LibraryApp.Data.ViewModels
         public List<Dispute> Disputes { get; set; }
 
         public List<Refund> Refunds { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }
