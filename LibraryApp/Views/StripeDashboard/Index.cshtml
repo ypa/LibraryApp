@@ -87,3 +87,61 @@
         }
     </tbody>
 </table>
+
+
+<h2>Stripe Disputes</h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Amount</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Created</th>
+            <th scope="col">Currency</th>
+            <th scope="col">Charge ID</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var dispute in Model.Disputes)
+        {
+        <tr>
+            <td>$@string.Format("{0:#.00}", Convert.ToDecimal(dispute.Amount) / 100)</td>
+            <td>@dispute.Reason</td>
+            <td>@dispute.Created</td>
+            <td>@dispute.Currency</td>
+            <td>@dispute.ChargeId</td>
+            <td>@dispute.Status</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<h2>Stripe Refunds</h2>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Amount</th>
+            <th scope="col">Receipt Number</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Created</th>
+            <th scope="col">Currency</th>
+            <th scope="col">Charge ID</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var refund in Model.Refunds)
+        {
+        <tr>
+            <td>$@string.Format("{0:#.00}", Convert.ToDecimal(refund.Amount) / 100)</td>
+            <td>@refund.ReceiptNumber</td>
+            <td>@refund.Reason</td>
+            <td>@refund.Created</td>
+            <td>@refund.Currency</td>
+            <td>@refund.ChargeId</td>
+            <td>@refund.Status</td>
+        </tr>
+        }
+    </tbody>
+</table>

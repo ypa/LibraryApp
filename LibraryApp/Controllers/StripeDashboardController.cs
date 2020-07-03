@@ -33,7 +33,15 @@ namespace LibraryApp.Controllers
             var chargeService = new ChargeService();
             var chargeResult = chargeService.List().ToList();
             response.Charges = chargeResult;
-            
+
+            var disputeService = new DisputeService();
+            var disputeResult = disputeService.List().ToList();
+            response.Disputes = disputeResult;
+
+            var refundService = new RefundService();
+            var refundResult = refundService.List().ToList();
+            response.Refunds = refundResult;
+
             return View(response);
         }
     }
